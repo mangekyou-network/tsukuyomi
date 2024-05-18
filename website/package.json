@@ -1,0 +1,73 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.1",
+    "@mui/x-date-pickers": "^6.10.1",
+    "@rainbow-me/rainbowkit": "^1.0.7",
+    "@tailwindcss/line-clamp": "^0.4.4",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@worldcoin/idkit": "^0.5.1",
+    "@zoralabs/nft-hooks": "^1.2.1",
+    "@zoralabs/zdk": "^2.4.0",
+    "alchemy-sdk": "^2.9.2",
+    "antd": "^5.7.3",
+    "dotenv": "^16.3.1",
+    "moment": "^2.29.4",
+    "notistack": "^3.0.1",
+    "opensea-js": "^6.1.7",
+    "react": "^18.2.0",
+    "react-datepicker": "^4.16.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.10.1",
+    "react-router-dom": "^6.4.1",
+    "react-scripts": "5.0.1",
+    "react-typed": "^1.2.0",
+    "viem": "^1.3.1",
+    "wagmi": "^1.3.9",
+    "web-vitals": "^3.4.0",
+    "web3.storage": "^4.5.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true
+  },
+  "browserslist": {
+    "production": [
+      "chrome >= 67",
+      "edge >= 79",
+      "firefox >= 68",
+      "opera >= 54",
+      "safari >= 14"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.12",
+    "postcss": "^8.4.17",
+    "tailwindcss": "^3.1.8"
+  }
+}
