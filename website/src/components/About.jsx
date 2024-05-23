@@ -16,19 +16,19 @@ const About = () => {
         />
         <AboutCard
           logo="./images/zora.png"
-          title="Zora"
-          subTitle="PerCapita's main contracts have been deployed on the Zora blockchain, enabling all transactions within PerCapita to be conducted rapidly, affordably, and securely."
+          title="Astria"
+          subTitle="Tsukuyomi's main contracts have been deployed on the Astria blockchain, enabling all transactions within Tsukuyomi to be conducted rapidly, affordably, and securely."
         />
         <AboutCard
         
           logo="./images/hyperline.png"
           title="Hyperlane"
-          subTitle="In order to safeguard our application from Sybil attacks, we wanted to utilize WorldCoin, and for fair selection, we aimed to use ChainLink VRF. However, these contracts were not available on Zora. Fortunately, thanks to Hyperlane, we were able to acquire these Dapps from other chains and integrate them into Zora."
+          subTitle="In order to safeguard our application from Sybil attacks, we wanted to utilize WorldCoin, and for fair selection, we aimed to use ChainLink VRF. However, these contracts were not available on Astria. Fortunately, thanks to Hyperlane, we were able to acquire these Dapps from other chains and integrate them into Astria."
         />
         <AboutCard
           logo="./images/chainlink.png"
           title="ChainLink"
-          subTitle="PerCapita utilizes Chainlink's VRF system to ensure fair and secure lotteries for NFT giveaways."
+          subTitle="Tsukuyomi utilizes Chainlink's VRF system to ensure fair and secure lotteries for NFT giveaways."
         />
       </div>
     </div>

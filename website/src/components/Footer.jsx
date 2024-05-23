@@ -9,7 +9,7 @@ const Footer = () => {
             href="/#"
             className="flex title-font font-bold items-center md:justify-start justify-center text-gray-900"
           >
-            <span className="ml-3 text-bold text-xl">PerCapita</span>
+            <span className="ml-3 text-bold text-xl">Tsukuyomi</span>
           </a>
         </div>
       </div>

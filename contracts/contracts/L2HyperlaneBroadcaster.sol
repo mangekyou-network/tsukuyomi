@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0
 
-pragma solidity 0.8.15;
+pragma solidity ^0.8.15;
 
 
-//L2 Hyperlane - 0x01CEb6fD0ad99000A7Fd95EC65AE5947Db3d7784
 contract L2VRFHyperlaneBroadcaster {
 
     address public mainContractAddress;
@@ -14,11 +13,10 @@ contract L2VRFHyperlaneBroadcaster {
     uint number;
     uint256 gasAmount = 300000;
 
-    uint32 constant goerliDomain = 5;
-    //address constant goerliReceiver = 0x36FdA966CfffF8a9Cdc814f546db0e6378bFef35;
-    address constant zoraMailbox = 0x51930e22E1D6d20E617BcF29693E187C015eBC6a;
+    uint32 constant sepoliaDomain = 11155111;
+    address constant astriaMailbox = 0x1c1bC3C040EB3C1B2215F64CfcE56Ad98300ce0e;
     IInterchainGasPaymaster igp = IInterchainGasPaymaster(
-        0xb32687e14558C96d5a4C907003327A932356B42b
+        0x0000000000000000000000000000000000000000
     );
 
     function addressToBytes32(address _addr) internal pure returns (bytes32) {
@@ -40,8 +38,8 @@ contract L2VRFHyperlaneBroadcaster {
 
     function getRandomSeed(uint collectionId) external payable {
 
-        bytes32 messageId = IMailbox(zoraMailbox).dispatch(
-            goerliDomain,
+        bytes32 messageId = IMailbox(astriaMailbox).dispatch(
+            sepoliaDomain,
             addressToBytes32(hyperlaneReceiver),
             abi.encode(false, collectionId)
         );
@@ -50,7 +48,7 @@ contract L2VRFHyperlaneBroadcaster {
         // Pay from the contract's balance
         igp.payForGas{ value: msg.value }(
             messageId, // The ID of the message that was just dispatched
-            goerliDomain, // The destination domain of the message
+            sepoliaDomain, // The destination domain of the message
             1200000,
             address(tx.origin) // refunds are returned to transaction executer
         );
@@ -66,8 +64,8 @@ contract L2VRFHyperlaneBroadcaster {
             uint256[8] memory proof
             ) external payable {
 
-        bytes32 messageId = IMailbox(zoraMailbox).dispatch(
-            goerliDomain,
+        bytes32 messageId = IMailbox(astriaMailbox).dispatch(
+            sepoliaDomain,
             addressToBytes32(hyperlaneReceiver),
             abi.encode(true, collectionId, userAddress, root, nullifierHash, proof)
         );
@@ -76,7 +74,7 @@ contract L2VRFHyperlaneBroadcaster {
         // Pay from the contract's balance
         igp.payForGas{ value: msg.value }(
             messageId, // The ID of the message that was just dispatched
-            goerliDomain, // The destination domain of the message
+            sepoliaDomain, // The destination domain of the message
             gasAmount,
             address(tx.origin) // refunds are returned to transaction executer
         );

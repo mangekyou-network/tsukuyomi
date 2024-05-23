@@ -26,29 +26,29 @@ interface Messenger {
     ) external;
 }
 
-//Goerli ISM: 0x56EBcF35f09879C41b7eb9F6FBA4b9fEb1926244
-//Ege - VRF Subscription ID: 13173
+//Sepolia ISM: 0x1EC0D2dE4E44bFf4aa0d7BAf4cd3CFC3388C8377
+
 contract L1Hyperlane is IMessageRecipient, VRFConsumerBaseV2, AutomationCompatibleInterface, ISpecifiesInterchainSecurityModule {
     using ByteHasher for bytes;
 
     address public L2HyperlaneBroadcaster;
     address public mainContractAddress;
-    IInterchainSecurityModule public interchainSecurityModule = IInterchainSecurityModule(0x9eEAdE2A7Fef4F550137fE73F2220586B8341950);
+    IInterchainSecurityModule public interchainSecurityModule = IInterchainSecurityModule(0x1EC0D2dE4E44bFf4aa0d7BAf4cd3CFC3388C8377);
 
     event RandomNumberRequested(uint indexed collectionId);
     event RandomNumberGenerated(uint indexed collectionId);
     event RandomSentToL2(uint indexed collectionId);
     event L1GotProof(uint indexed collectionId, address indexed participant, bool proofResult);
 
-    //ZORA - L1CrossDomainMessenger
-    address constant MESSENGER_ADDRESS = 0xD87342e16352D33170557A7dA1e5fB966a60FafC;
+    //L1CrossDomainMessenger
+    // address constant MESSENGER_ADDRESS = 0xD87342e16352D33170557A7dA1e5fB966a60FafC;
 
     //HYPERLANE
-    address constant MAILBOX = 0xCC737a94FecaeC165AbCf12dED095BB13F037685;
+    address constant MAILBOX = 0xfFAEF09B3cd11D9b20d1a19bECca54EEC2884766;
 
     //WORLD ID
     error InvalidNullifier();
-    address WORLD_ID_ADDRESS = 0x11cA3127182f7583EfC416a8771BD4d11Fae4334;
+    address WORLD_ID_ADDRESS = 0x928a514350A403e2f5e3288C102f6B1CCABeb37C;
     IWorldID internal immutable worldId;
     uint256 internal immutable groupId = 1;
     string constant APP_ID = "app_staging_2c9d462d4316977be96a258fa730570f";
@@ -72,10 +72,10 @@ contract L1Hyperlane is IMessageRecipient, VRFConsumerBaseV2, AutomationCompatib
 
     address owner;
 
-    Messenger messenger;
+    // Messenger messenger;
 
      constructor(uint64 _subscriptionId) VRFConsumerBaseV2(VRFCoordinatorAddress) {
-        messenger = Messenger(MESSENGER_ADDRESS);
+        // messenger = Messenger(MESSENGER_ADDRESS);
         s_subscriptionId = _subscriptionId;
         COORDINATOR = VRFCoordinatorV2Interface(VRFCoordinatorAddress);
         worldId = IWorldID(WORLD_ID_ADDRESS);
@@ -135,7 +135,7 @@ contract L1Hyperlane is IMessageRecipient, VRFConsumerBaseV2, AutomationCompatib
         bytes calldata _body
     ) external onlyMailbox {
         require( bytes32ToAddress(_sender) == L2HyperlaneBroadcaster, "not L2 broadcaster");
-        // require(  ) origin require from 999 can be addet to ensure that only coming from zora goerli network
+        // require(  ) origin require from 999 can be addet to ensure that only coming from astria sepolia network
         bool isVerifyProof;
         uint256 collectionId;
         (isVerifyProof, collectionId) = abi.decode(_body, (bool, uint));
@@ -146,14 +146,14 @@ contract L1Hyperlane is IMessageRecipient, VRFConsumerBaseV2, AutomationCompatib
             uint256[8] memory _proof;
             (isVerifyProof, collectionId, _userAddress, _root, _nullifierHash, _proof) = abi.decode(_body, (bool, uint, address, uint, uint, uint[8]));
             bool proofResult = verifyWorldIdProof(collectionId, _userAddress, _root, _nullifierHash, _proof);
-            messenger.sendMessage(
-                mainContractAddress,
-                abi.encodeWithSignature(
-                "gotProof(bytes)",
-                abi.encode(collectionId, _userAddress, proofResult, _nullifierHash)
-            ),
-            700000 // use whatever gas limit you want
-            ); 
+            // messenger.sendMessage(
+            //     mainContractAddress,
+            //     abi.encodeWithSignature(
+            //     "gotProof(bytes)",
+            //     abi.encode(collectionId, _userAddress, proofResult, _nullifierHash)
+            // ),
+            // 700000 // use whatever gas limit you want
+            // ); 
             emit L1GotProof(collectionId, _userAddress, proofResult);
         } else {
             requestRandomWords(collectionId);
@@ -200,7 +200,7 @@ contract L1Hyperlane is IMessageRecipient, VRFConsumerBaseV2, AutomationCompatib
     }
 
 
-    //Stores the random number in main contract in Optimism Goerli
+    //Stores the random number in main contract in Optimism Sepolia
      function storeToL2() public { // şimdilik verimsiz yapıyorum belki hepsini tekte yollayabiliriz
 
         require(pendingCollections.length > 0, "no pending seed");
@@ -210,14 +210,14 @@ contract L1Hyperlane is IMessageRecipient, VRFConsumerBaseV2, AutomationCompatib
         pendingCollections.pop();
         uint256 seed = collectionIdToSeed[collectionId];
 
-        messenger.sendMessage(
-        mainContractAddress,
-        abi.encodeWithSignature(
-            "submitRandomSeed(bytes)",
-            abi.encode(collectionId, seed)
-        ),
-        500000 // use whatever gas limit you want
-        ); 
+        // messenger.sendMessage(
+        // mainContractAddress,
+        // abi.encodeWithSignature(
+        //     "submitRandomSeed(bytes)",
+        //     abi.encode(collectionId, seed)
+        // ),
+        // 500000 // use whatever gas limit you want
+        // ); 
 
         emit RandomSentToL2(collectionId);
     
@@ -225,18 +225,18 @@ contract L1Hyperlane is IMessageRecipient, VRFConsumerBaseV2, AutomationCompatib
 
 
     //mock code for fast trying
-    //Stores the random number in main contract in Optimism Goerli
-    function storeToL2Mock(address _testL2Addr, uint256 collectionId, uint256 seed ) public { // şimdilik verimsiz yapıyorum belki hepsini tekte yollayabiliriz
-            messenger.sendMessage(
-            _testL2Addr,
-            abi.encodeWithSignature(
-                "submitMock(bytes)",
-                abi.encode(collectionId, seed)
-            ),
-            500000 // use whatever gas limit you want
-            ); 
+    //Stores the random number in main contract in Scroll Sepolia
+    // function storeToL2Mock(address _testL2Addr, uint256 collectionId, uint256 seed ) public { // şimdilik verimsiz yapıyorum belki hepsini tekte yollayabiliriz
+    //         messenger.sendMessage(
+    //         _testL2Addr,
+    //         abi.encodeWithSignature(
+    //             "submitMock(bytes)",
+    //             abi.encode(collectionId, seed)
+    //         ),
+    //         500000 // use whatever gas limit you want
+    //         ); 
 
             
-    }
+    // }
 
 }

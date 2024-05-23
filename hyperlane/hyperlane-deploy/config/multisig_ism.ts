@@ -18,9 +18,9 @@ export const multisigIsmConfig: ChainMap<MultisigIsmConfig> = {
       '0xa0ee7a142d267c1f36714e4a8f75612f20a79720',
     ],
   },
-  zora: {
+  astria: {
     type: ModuleType.LEGACY_MULTISIG,
     threshold: 1,
-    validators: ["0x78271569468F85f23Bd18242e182C8B9ed7061bB"]
+    validators: ["0xc4A68589759A1403c5F3754Aa889656E9A96f49e"]
   }
 };

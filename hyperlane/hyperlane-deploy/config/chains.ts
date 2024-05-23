@@ -36,13 +36,13 @@ export const chains: ChainMap<ChainMetadata> = {
       },
     ],
   },
-  zora: {
-    name: 'zora',
+  astria: {
+    name: 'astria',
     protocol: ProtocolType.Ethereum,
-    chainId: 999,
+    chainId: 69690,
     rpcUrls: [
       {
-        http: 'https://testnet.rpc.zora.co/',
+        http: 'http://executor.astria.supervelo.xyz/',
       },
     ],
     blocks: {

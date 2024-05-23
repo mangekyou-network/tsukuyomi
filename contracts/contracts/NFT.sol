@@ -1,22 +1,21 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.15;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
-import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract MyToken is ERC721, Ownable {
+contract SoulboundNameService is ERC721 {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
 
     constructor() ERC721("MyToken", "MTK") {}
 
-    function safeMint() public onlyOwner {
+    function safeMint(address _recipient) public {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
-        _safeMint(msg.sender, tokenId);
+        _safeMint(_recipient, tokenId);
     }
 
     //Collection1 - 7 items: bafybeiedpguw6nwqxuhmo7av6nfkilfr2azgvagmavh5env77auwot4cx4
@@ -25,13 +24,6 @@ contract MyToken is ERC721, Ownable {
 
     function _baseURI() internal pure override returns (string memory) {
         return "ipfs://bafybeiequh7ru4fxtl52fhwsznhiq2xxqjsqqe23pbmmpxz7cqoenpcw6a/";
-    }
-
-    function mintAmount(uint amount) public onlyOwner {
-        for(uint i = 0; i < amount; i++) {
-            safeMint();
-        }
-        
     }
 
     function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {

@@ -5,7 +5,6 @@ import contractAddresses from '../utils/addresses.json';
 import mainContractAbi from '../utils/MainAbi.json';
 import { formatEther, parseGwei } from 'viem';
 import { formatUnits } from 'viem';
-import { readContract, writeContract } from '@wagmi/core';
 import { useContractRead } from 'wagmi';
 import inoTypes from '../utils/inoTypes';
 import { useNavigate } from 'react-router-dom';

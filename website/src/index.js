@@ -6,6 +6,7 @@ import "@rainbow-me/rainbowkit/styles.css";
 import { getDefaultWallets, RainbowKitProvider,darkTheme} from "@rainbow-me/rainbowkit";
 
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
+import { defineChain } from 'viem';
 import {
   mainnet,
   polygon,
@@ -14,6 +15,7 @@ import {
   zora,
   optimismGoerli,
   zoraTestnet,
+  sepolia
 } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 
@@ -32,16 +34,40 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+export const astria = defineChain({
+  id: 69690,
+  name: 'astria',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'ASTRIA',
+    symbol: 'RIA',
+  },
+  rpcUrls: {
+    default: {
+      http: ['http://executor.astria.supervelo.xyz'],
+      webSocket: ['wss://executor.astria.supervelo.xyz'],
+    },
+  },
+  blockExplorers: {
+    default: { name: 'Explorer', url: 'http://blockscout.astria.supervelo.xyz' },
+  },
+  // contracts: {
+  //   multicall3: {
+  //     address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+  //     blockCreated: 5882,
+  //   },
+  // },
+})
 
 //WAGMI
 const { chains, publicClient } = configureChains(
-  [zoraTestnet],
+  [astria],
   [
     publicProvider()
   ]
 );
 const { connectors } = getDefaultWallets({
-  appName: 'Per Capita',
+  appName: 'Tsukuyomi',
   projectId: 'ebbc27c89ea63989fd5cb0ef3d1a49cd',
   chains
 });

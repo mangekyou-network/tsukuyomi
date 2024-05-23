@@ -18,7 +18,7 @@ const Header = () => {
           >
 
             <span className="self-center text-3xl text-white font-bold font-custom whitespace-nowrap">
-              PerCapita
+              Tsukuyomi
             </span>
           </Link>
           <button
