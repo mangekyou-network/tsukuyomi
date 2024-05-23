@@ -68,7 +68,7 @@ const Header = () => {
                     setIsNavExpanded(false);
                   }}
                 >
-                  INOs
+                  API
                 </Link>
               </li>
               <li>
@@ -83,7 +83,7 @@ const Header = () => {
                     setIsNavExpanded(false);
                   }}
                 >
-                  Launch INO
+                  Integrate Rollup
                 </Link>
               </li>
             

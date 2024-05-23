@@ -1,6 +1,9 @@
 This project integrates Celestia DA X Astria Shared Sequencer to provide a platform for arbitrage, cross-chain identity verification, and activity labeling through NFTs. Below is a brief overview of the key components and functionalities of the project:
 
-Deployed Astria Shared Sequencer RPC URL: http://executor.astria.supervelo.xyz/ 
+Deployed Tsukuyomi Rollup RPC: http://executor.astria.supervelo.xyz/ 
+
+![Demo Landing](image.png)
+
 
 ## Key Components
 

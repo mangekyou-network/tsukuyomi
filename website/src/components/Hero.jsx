@@ -32,7 +32,7 @@ function Home() {
       <section className="w-full pt-24 md:pt-0 md:h-screen bg-[#02050E] relative flex flex-col md:flex-row justify-center items-center">
         <div className="container mt-10 md:w-1/2 lg:pl-18 xl:pl-24  md:pl-16 flex flex-col md:items-start md:text-left items-center text-center md:ml-24">
           <h1 className="text-4xl mt-10 leading-[44px] md:text-4xl text-white md:leading-tight lg:text-6xl lg:leading-[1.2] font-bold md:tracking-[-2px]">
-            NFT distribution that is{' '}
+            Credential rollup that is{' '}
           </h1>
           <Typed
             className="py-3 max-w[200px] text-5xl md:text-6xl bg-clip-text font-extrabold  text-transparent bg-gradient-to-r from-[#7316ff] to-[#f813e1]"
@@ -43,12 +43,12 @@ function Home() {
           />
 
           <p className="pt-4 pb-8 md:pt-6 text-gray-400 md:pb-12 max-w-[480px] text-lg text-center lg:text-left">
-            You can efficiently distribute NFTs per person in a way that is resistant to Sybil attacks by Initial NFT Offerings.
+            You can efficiently verify your users' cross-chain identities by minting Soulbounds 
           </p>
 
           <button onClick={navigateInos} className="bg-[#7316ff] mb-5 text-white text-base font-medium px-6 py-3 rounded-lg
           hover:bg-[#7d27ff] hover:scale-[1.03]">
-            Discover INOs
+            Mint here!
           </button>
         </div>
         <div className="lg:max-w-lg w-full md:w-1/2 md:mr-28  mb-6 md:mt-20 flex justify-center items-center">

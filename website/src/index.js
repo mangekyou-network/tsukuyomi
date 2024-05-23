@@ -61,7 +61,7 @@ export const astria = defineChain({
 
 //WAGMI
 const { chains, publicClient } = configureChains(
-  [astria],
+  [sepolia],
   [
     publicProvider()
   ]
