@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
 
-pragma solidity >=0.8.2 <0.9.0;
+pragma solidity ^0.8.10;
 
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
@@ -26,6 +26,14 @@ interface Messenger {
     ) external;
 }
 
+interface IMailbox {
+        function dispatch(
+        uint32 _destination,
+        bytes32 _recipient,
+        bytes calldata _body
+    ) external returns (bytes32);
+}
+
 //Sepolia ISM: 0x1EC0D2dE4E44bFf4aa0d7BAf4cd3CFC3388C8377
 
 contract L1Hyperlane is IMessageRecipient, VRFConsumerBaseV2, AutomationCompatibleInterface, ISpecifiesInterchainSecurityModule {
@@ -34,6 +42,9 @@ contract L1Hyperlane is IMessageRecipient, VRFConsumerBaseV2, AutomationCompatib
     address public L2HyperlaneBroadcaster;
     address public mainContractAddress;
     IInterchainSecurityModule public interchainSecurityModule = IInterchainSecurityModule(0x1EC0D2dE4E44bFf4aa0d7BAf4cd3CFC3388C8377);
+
+    uint32 constant astriaDomain = 69690;
+    address constant sepoliaMailbox = 0xfFAEF09B3cd11D9b20d1a19bECca54EEC2884766;
 
     event RandomNumberRequested(uint indexed collectionId);
     event RandomNumberGenerated(uint indexed collectionId);
@@ -74,9 +85,9 @@ contract L1Hyperlane is IMessageRecipient, VRFConsumerBaseV2, AutomationCompatib
 
     // Messenger messenger;
 
-     constructor(uint64 _subscriptionId) VRFConsumerBaseV2(VRFCoordinatorAddress) {
+     constructor() VRFConsumerBaseV2(VRFCoordinatorAddress) {
         // messenger = Messenger(MESSENGER_ADDRESS);
-        s_subscriptionId = _subscriptionId;
+        s_subscriptionId = 1;
         COORDINATOR = VRFCoordinatorV2Interface(VRFCoordinatorAddress);
         worldId = IWorldID(WORLD_ID_ADDRESS);
         owner = msg.sender;
@@ -86,6 +97,9 @@ contract L1Hyperlane is IMessageRecipient, VRFConsumerBaseV2, AutomationCompatib
         return address(uint160(uint256(_buf)));
     }
 
+    function addressToBytes32(address _addr) internal pure returns (bytes32) {
+        return bytes32(uint256(uint160(_addr)));
+    }
     
     // for access control on handle implementations
     modifier onlyMailbox() {
@@ -146,14 +160,15 @@ contract L1Hyperlane is IMessageRecipient, VRFConsumerBaseV2, AutomationCompatib
             uint256[8] memory _proof;
             (isVerifyProof, collectionId, _userAddress, _root, _nullifierHash, _proof) = abi.decode(_body, (bool, uint, address, uint, uint, uint[8]));
             bool proofResult = verifyWorldIdProof(collectionId, _userAddress, _root, _nullifierHash, _proof);
-            // messenger.sendMessage(
-            //     mainContractAddress,
-            //     abi.encodeWithSignature(
-            //     "gotProof(bytes)",
-            //     abi.encode(collectionId, _userAddress, proofResult, _nullifierHash)
-            // ),
-            // 700000 // use whatever gas limit you want
-            // ); 
+
+            // TODO: send back message to L2
+            bytes32 messageId = IMailbox(sepoliaMailbox).dispatch(
+                astriaDomain,
+                addressToBytes32(mainContractAddress),
+                abi.encode(collectionId, _userAddress, proofResult, _nullifierHash)
+            );
+
+            
             emit L1GotProof(collectionId, _userAddress, proofResult);
         } else {
             requestRandomWords(collectionId);

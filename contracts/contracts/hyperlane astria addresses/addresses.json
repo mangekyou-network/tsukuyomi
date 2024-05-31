@@ -13,7 +13,8 @@
     "testRecipient": "0xa9Cd82b707D76D9791F0eAc860e5ae2459710B89",
     "mailbox": "0xfFAEF09B3cd11D9b20d1a19bECca54EEC2884766",
     "proxyAdmin": "0x97Bbc6bBaFa5Ce3b2FA966c121Af63bD09e940f8",
-    "validatorAnnounce": "0xE6105C59480a1B7DD3E4f28153aFdbE12F4CfCD9"
+    "validatorAnnounce": "0xE6105C59480a1B7DD3E4f28153aFdbE12F4CfCD9",
+    "L1HyperlaneReceiver": "0xa40bb08bb5a578417d6cefa91d06881647e99285"
   },
   "astria": {
     "staticMerkleRootMultisigIsmFactory": "0x114983FA50BeC1dA12Cd02d3FacB1B484dbDE127",
@@ -28,6 +29,8 @@
     "testRecipient": "0xB2B09D8237503E6A49F129c0203C08ec3A44B0Dd",
     "mailbox": "0x1c1bC3C040EB3C1B2215F64CfcE56Ad98300ce0e",
     "proxyAdmin": "0x8d7718BAa951DcD405901aA8df5AD9bF02e5EF10",
-    "validatorAnnounce": "0x20a2B6EeA767219b94015c30fe7D732E61C1431E"    
+    "validatorAnnounce": "0x20a2B6EeA767219b94015c30fe7D732E61C1431E",
+    "L2HyperlaneBroadcaster": "0xbFDd62d283bAB7492d07fC92731be7E617765dD5",
+    "tsukuyomi": "0x5bd1fCa8Bc95Cf9f5691Dc34D70643EE8E13E23d"
   }
 }

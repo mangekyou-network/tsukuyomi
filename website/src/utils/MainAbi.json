@@ -20,63 +20,12 @@
 		"inputs": [
 			{
 				"indexed": true,
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "collectionId",
-				"type": "uint256"
-			}
-		],
-		"name": "CollectionCreated",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
 				"internalType": "uint256",
 				"name": "collectionId",
 				"type": "uint256"
 			}
 		],
 		"name": "GiveawayExecuted",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "collectionId",
-				"type": "uint256"
-			}
-		],
-		"name": "GiveawayExecuting",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "collectionId",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "claimer",
-				"type": "address"
-			}
-		],
-		"name": "NFTClaimed",
 		"type": "event"
 	},
 	{
@@ -122,12 +71,18 @@
 		"inputs": [
 			{
 				"indexed": true,
+				"internalType": "address",
+				"name": "participant",
+				"type": "address"
+			},
+			{
+				"indexed": true,
 				"internalType": "uint256",
-				"name": "collectionId",
+				"name": "NFTId",
 				"type": "uint256"
 			}
 		],
-		"name": "PriceClaimed",
+		"name": "SoulboundNFTClaimed",
 		"type": "event"
 	},
 	{
@@ -179,67 +134,6 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "NFTsOfMarketplaces",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "marketplaceId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256[]",
-				"name": "ids",
-				"type": "uint256[]"
-			}
-		],
-		"name": "addAllNFTstoMarketplace",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "balance",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
 				"name": "marketplaceId",
 				"type": "uint256"
 			},
@@ -265,339 +159,10 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "marketplaceId",
-				"type": "uint256"
-			}
-		],
-		"name": "beParticipantMock",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "marketplaceId",
-				"type": "uint256"
-			}
-		],
-		"name": "claimNFT",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "marketplaceId",
-				"type": "uint256"
-			}
-		],
-		"name": "claimPrice",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_imageUri",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_description",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_giveawayTime",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "_contractAddress",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_price",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "_transferPricesTo",
-				"type": "address"
-			}
-		],
-		"name": "createGiveawayMarketplace",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "marketplaceId",
-				"type": "uint256"
-			}
-		],
-		"name": "executeGiveaway",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
 		"inputs": [],
-		"name": "fetchAllMarketplaces",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "enum Tsukuyomi.MarketplaceType",
-						"name": "marketType",
-						"type": "uint8"
-					},
-					{
-						"internalType": "string",
-						"name": "imageUri",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "description",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "giveawayTime",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "owner",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "contractAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "price",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "pool",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "transferPricesTo",
-						"type": "address"
-					},
-					{
-						"internalType": "bool",
-						"name": "isDistributed",
-						"type": "bool"
-					},
-					{
-						"internalType": "uint256",
-						"name": "randomSeed",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "participantNumber",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct Tsukuyomi.Marketplace[]",
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			}
-		],
-		"name": "fetchMarketplace",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "enum Tsukuyomi.MarketplaceType",
-						"name": "marketType",
-						"type": "uint8"
-					},
-					{
-						"internalType": "string",
-						"name": "imageUri",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "description",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "giveawayTime",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "owner",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "contractAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "price",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "pool",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "transferPricesTo",
-						"type": "address"
-					},
-					{
-						"internalType": "bool",
-						"name": "isDistributed",
-						"type": "bool"
-					},
-					{
-						"internalType": "uint256",
-						"name": "randomSeed",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "participantNumber",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct Tsukuyomi.Marketplace",
-				"name": "",
-				"type": "tuple"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			}
-		],
-		"name": "fetchNFTsOfMarketplace",
-		"outputs": [
-			{
-				"internalType": "uint256[]",
-				"name": "",
-				"type": "uint256[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getBlockTimestamp",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "marketplaceId",
-				"type": "uint256"
-			}
-		],
-		"name": "getExecutorReward",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "marketplaceId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "participant",
-				"type": "address"
-			}
-		],
-		"name": "getGiveawayResult",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
+		"name": "claimSoulboundNFT",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -616,116 +181,34 @@
 	{
 		"inputs": [
 			{
+				"internalType": "uint32",
+				"name": "_origin",
+				"type": "uint32"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_sender",
+				"type": "bytes32"
+			},
+			{
 				"internalType": "bytes",
-				"name": "parameters",
+				"name": "_body",
 				"type": "bytes"
 			}
 		],
-		"name": "gotProof",
+		"name": "handle",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "marketplaces",
-		"outputs": [
-			{
-				"internalType": "enum Tsukuyomi.MarketplaceType",
-				"name": "marketType",
-				"type": "uint8"
-			},
-			{
-				"internalType": "string",
-				"name": "imageUri",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "description",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "giveawayTime",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "contractAddress",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "price",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "pool",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "transferPricesTo",
-				"type": "address"
-			},
-			{
-				"internalType": "bool",
-				"name": "isDistributed",
-				"type": "bool"
-			},
-			{
-				"internalType": "uint256",
-				"name": "randomSeed",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "participantNumber",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [],
-		"name": "mockCollectionId",
+		"name": "interchainSecurityModule",
 		"outputs": [
 			{
-				"internalType": "uint256",
+				"internalType": "contract IInterchainSecurityModule",
 				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "mockSeed",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
+				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -754,86 +237,19 @@
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "operator",
+				"name": "",
 				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
 			}
 		],
-		"name": "onERC721Received",
+		"name": "participantNFTs",
 		"outputs": [
 			{
-				"internalType": "bytes4",
-				"name": "",
-				"type": "bytes4"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "participants",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "isParticipated",
-				"type": "bool"
-			},
-			{
-				"internalType": "uint256",
-				"name": "nonce",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bool",
-				"name": "isClaimed",
-				"type": "bool"
-			},
-			{
-				"internalType": "bool",
-				"name": "wantedVerification",
-				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "marketplaceId",
-				"type": "uint256"
-			}
-		],
-		"name": "renounceOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -857,7 +273,7 @@
 				"type": "bytes"
 			}
 		],
-		"name": "submitMock",
+		"name": "submitRandomSeed",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -865,21 +281,20 @@
 	{
 		"inputs": [
 			{
-				"internalType": "bytes",
-				"name": "parameters",
-				"type": "bytes"
+				"internalType": "address",
+				"name": "",
+				"type": "address"
 			}
 		],
-		"name": "submitRandomSeed",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "withdraw",
-		"outputs": [],
-		"stateMutability": "nonpayable",
+		"name": "verifiedUsers",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	}
 ]

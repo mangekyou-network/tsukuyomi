@@ -2,10 +2,6 @@
 
 pragma solidity ^0.8.10;
 
-import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "./NFT.sol";
 import { ByteHasher } from './libraries/ByteHasher.sol';
 import { IWorldID } from './libraries/IWorldID.sol';
 import { ByteHasher } from './libraries/ByteHasher.sol';
@@ -20,7 +16,7 @@ interface IMessageRecipient {
     ) external;
 }
 
-contract Tsukuyomi is IERC721Receiver, ISpecifiesInterchainSecurityModule, IMessageRecipient {
+contract Tsukuyomi is ISpecifiesInterchainSecurityModule, IMessageRecipient {
     using ByteHasher for bytes;
 
     address public L2_VRF_BROADCAST_ADDRESS;
@@ -50,7 +46,7 @@ contract Tsukuyomi is IERC721Receiver, ISpecifiesInterchainSecurityModule, IMess
 
 
     // Soulbound NFT contract
-    SoulboundNameService public soulboundNFT = SoulboundNameService(0xb32687e14558C96d5a4C907003327A932356B42b);
+    // SoulboundNameService public soulboundNFT = SoulboundNameService(0xb32687e14558C96d5a4C907003327A932356B42b);
 
     // Event emitted when a participant is awarded a soulbound NFT
     event SoulboundNFTClaimed(address indexed participant, uint256 indexed NFTId);
@@ -127,7 +123,7 @@ contract Tsukuyomi is IERC721Receiver, ISpecifiesInterchainSecurityModule, IMess
 
     function claimSoulboundNFT() external {
         require(verifiedUsers[msg.sender], "User is not verified");
-        soulboundNFT.safeMint(msg.sender);
+        // soulboundNFT.safeMint(msg.sender);
         // participantNFTs[msg.sender] = NFTId;
         //emit SoulboundNFTClaimed(msg.sender, NFTId);
     }
@@ -136,9 +132,6 @@ contract Tsukuyomi is IERC721Receiver, ISpecifiesInterchainSecurityModule, IMess
         return igp.quoteGasPayment(sepoliaDomain, hyperlaneGas);
     }
 
-    function onERC721Received(address, address, uint256, bytes memory) public pure override returns (bytes4) {
-        return this.onERC721Received.selector;
-    }
 }
 
 interface L2VRFHyperlaneBroadcaster {
