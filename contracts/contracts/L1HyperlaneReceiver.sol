@@ -62,8 +62,8 @@ contract L1Hyperlane is IMessageRecipient, VRFConsumerBaseV2, AutomationCompatib
     address WORLD_ID_ADDRESS = 0x928a514350A403e2f5e3288C102f6B1CCABeb37C;
     IWorldID internal immutable worldId;
     uint256 internal immutable groupId = 1;
-    string constant APP_ID = "app_staging_2c9d462d4316977be96a258fa730570f";
-    string constant ACTION = "bePart_";
+    string constant APP_ID = "app_staging_aa5628b6d38113bc3507c644c5bf5630";
+    string constant ACTION = "verify_credibilities";
 
     //CHAINLINK
     uint64 s_subscriptionId;
